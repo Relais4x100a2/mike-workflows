@@ -1,0 +1,38 @@
+$schema: ../../workflow-schema/pack.schema.yaml
+id: droit-travail-fr
+title: Droit du travail français
+description: 'Assistant juridique en droit du travail français : orchestrateur et 20 workflows spécialisés (analyse de licenciement, non-concurrence, transaction, audit de contrat et d''accord, calcul d''indemnités, contrôle disciplinaire, harcèlement, CDD, CSE, temps de travail, veille de la chambre sociale, formation) avec vérification obligatoire des sources via connecteurs juridiques. Outil d''assistance destiné aux praticiens.'
+publisher:
+  name: Relais4x100a2
+  url: https://relais4x100a2
+license: AGPL-3.0-only
+version: 0.2.0
+practice: Droit du travail
+jurisdiction: FR
+source:
+  repo: lawve.ai
+  ref: 2026-10
+  path: '@el-ouertani-faouzi/skill/assistant-juridique-droit-travail'
+  url: https://lawve.ai/@el-ouertani-faouzi/skill/assistant-juridique-droit-travail
+workflows:
+- fr-travail-assistant-juridique
+- fr-travail-analyse-licenciement
+- fr-travail-clause-non-concurrence
+- fr-travail-transaction
+- fr-travail-audit-contrat
+- fr-travail-plaidoirie-cph
+- fr-travail-calculateur-indemnites
+- fr-travail-controle-disciplinaire
+- fr-travail-avocat-adverse
+- fr-travail-synthese-ccn
+- fr-travail-relations-collectives
+- fr-travail-audit-accord
+- fr-travail-requalification-cdd
+- fr-travail-redacteur-courriers
+- fr-travail-audit-temps-travail
+- fr-travail-harcelement-moral
+- fr-travail-traducteur-decision
+- fr-travail-conseil-dirigeant
+- fr-travail-veilleur
+- fr-travail-formateur
+- fr-travail-auditeur-social
