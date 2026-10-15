@@ -4,9 +4,9 @@ title: Droit du travail français
 description: 'Assistant juridique en droit du travail français : orchestrateur et 20 workflows spécialisés (analyse de licenciement, non-concurrence, transaction, audit de contrat et d''accord, calcul d''indemnités, contrôle disciplinaire, harcèlement, CDD, CSE, temps de travail, veille de la chambre sociale, formation) avec vérification obligatoire des sources via connecteurs juridiques. Outil d''assistance destiné aux praticiens.'
 publisher:
   name: Relais4x100a2
-  url: https://relais4x100a2
+  url: https://github.com/Relais4x100a2
 license: AGPL-3.0-only
-version: 0.2.0
+version: 0.3.0
 practice: Droit du travail
 jurisdiction: FR
 source:
