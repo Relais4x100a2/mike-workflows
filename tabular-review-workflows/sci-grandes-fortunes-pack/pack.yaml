@@ -1,0 +1,13 @@
+$schema: "../../workflow-schema/pack.schema.yaml"
+id: "sci-grandes-fortunes"
+title: "Statuts de SCI : grandes fortunes"
+description: "Revue tabulaire des statuts de sociétés civiles immobilières (droit français) pour une recherche personnelle, non commerciale et à visée scientifique sur la structuration du patrimoine immobilier des grandes fortunes : capital, démembrement, gérance, gouvernance, agrément et transmission, avec valeurs normalisées et extraits littéraux."
+publisher:
+  name: "Relais4x100a2"
+  url: "https://github.com/Relais4x100a2"
+license: "MIT"
+version: "1.0.0"
+practice: "Droit des sociétés et patrimoine"
+jurisdiction: "FR"
+workflows:
+  - "statuts-sci-grandes-fortunes"
