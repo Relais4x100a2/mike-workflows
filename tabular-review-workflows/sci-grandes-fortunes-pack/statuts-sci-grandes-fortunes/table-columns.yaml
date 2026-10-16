@@ -1,0 +1,373 @@
+$schema: "../../../workflow-schema/table-columns.schema.yaml"
+columns:
+  - index: 0
+    name: "Type de PDF"
+    format: "tag"
+    tags: ["Statuts seuls", "Statuts + modifications", "Statuts + PV", "Pièces sans statuts", "Autre"]
+    prompt: >-
+      Quelle est la composition du PDF ? Indiquez s'il contient les statuts seuls, les statuts avec modifications, les statuts avec procès-verbaux (PV), ou uniquement d'autres pièces (page de garde, extrait Kbis, PV seuls). Ne déduisez rien d'une pièce absente.
+  - index: 1
+    name: "Acte de référence retenu"
+    format: "text"
+    prompt: >-
+      Identifiez l'acte de référence : la version la plus récente et lisible des statuts, en tenant compte des modification(s) et PV postérieurs. Indiquez son intitulé, sa date et les pièces ultérieures prises en compte. Si aucun acte de statuts n'est présent, répondez « Aucun acte de statuts ».
+  - index: 2
+    name: "Date de l'état à jour"
+    format: "date"
+    prompt: >-
+      Quelle est la date de l'état à jour des statuts, c'est-à-dire la date de la dernière modification ou décision prise en compte dans le PDF ? Si elle ne peut pas être établie, laissez vide.
+  - index: 3
+    name: "Nombre de modifications statutaires repérées"
+    format: "tag"
+    tags: ["0", "1", "2 à 3", "4 et plus", "Non déterminable"]
+    prompt: >-
+      Combien de modifications statutaires distinctes apparaissent dans le PDF (actes modificatifs, PV portant modification des statuts) ? Répondez « Non déterminable » si le PDF est incomplet ou illisible sur ce point.
+  - index: 4
+    name: "Lisibilité du PDF"
+    format: "tag"
+    tags: ["Bonne", "Partielle", "Mauvaise"]
+    prompt: >-
+      Évaluez la lisibilité du PDF : texte exploitable en entier (Bonne), parties illisibles ou scan dégradé (Partielle), texte pour l'essentiel inexploitable (Mauvaise).
+  - index: 5
+    name: "Confiance globale"
+    format: "tag"
+    tags: ["Élevée", "Moyenne", "Faible"]
+    prompt: >-
+      Quel est votre niveau de confiance global dans les valeurs extraites pour ce PDF ? Tenez compte de la Lisibilité du PDF, de la présence ou non des statuts complets, de modifications éventuellement manquantes et des clauses ambiguës.
+  - index: 6
+    name: "Forme et dénomination"
+    format: "text"
+    prompt: >-
+      Quelle est la forme de la société et sa dénomination sociale exacte, telles qu'indiquées dans l'état à jour des statuts ?
+  - index: 7
+    name: "Date de constitution"
+    format: "date"
+    prompt: >-
+      Quelle est la date de constitution (signature des statuts initiaux) de la société, si elle est indiquée ?
+  - index: 8
+    name: "Durée de la société"
+    format: "tag"
+    tags: ["Moins de 50 ans", "50 à 99 ans", "Plus de 99 ans", "Illimitée", "Non précisé"]
+    prompt: >-
+      Quelle est la durée de la société fixée par les statuts ? Choisissez la tranche correspondante, ou « Non précisé » si les statuts n'en font pas mention.
+  - index: 9
+    name: "Objet : nature"
+    format: "tag"
+    tags: ["Gestion patrimoniale", "Familiale", "Construction-vente", "Mixte", "Autre", "Non précisé"]
+    prompt: >-
+      Quelle est la nature de l'objet social décrit par les statuts ? Classez-la d'après le texte seul : gestion de patrimoine, société familiale, construction-vente, combinaison de plusieurs, ou autre.
+  - index: 10
+    name: "Objet étendu au-delà de l'immobilier"
+    format: "yes_no"
+    prompt: >-
+      L'objet social prévoit-il des activités autres que l'acquisition, la détention et la gestion d'immeubles (par exemple prise de participations, placements, opérations financières) ?
+  - index: 11
+    name: "Régime fiscal annoncé"
+    format: "tag"
+    tags: ["IR", "IS", "Non précisé"]
+    prompt: >-
+      Les statuts mentionnent-ils le régime fiscal de la société (impôt sur le revenu ou option pour l'impôt sur les sociétés) ? Répondez « Non précisé » si le texte est muet.
+  - index: 12
+    name: "Capital social"
+    format: "monetary_amount"
+    prompt: >-
+      Quel est le montant du capital social à la date de l'état à jour ? Si plusieurs montants figurent (capital initial, augmentations), retenez celui de l'état à jour.
+  - index: 13
+    name: "Capital variable"
+    format: "yes_no"
+    prompt: >-
+      Les statuts prévoient-ils un capital variable, c'est-à-dire la faculté d'entrée ou de sortie d'associés et de variation du capital sans modification des statuts ?
+  - index: 14
+    name: "Capital variable : extrait"
+    format: "text"
+    prompt: >-
+      Citez littéralement la clause relative au capital variable, avec son numéro d'article. Si elle est absente, laissez vide.
+  - index: 15
+    name: "Siège : ville"
+    format: "text"
+    prompt: >-
+      Dans quelle ville se situe le siège social indiqué à l'état à jour des statuts ?
+  - index: 16
+    name: "Nombre d'associés"
+    format: "tag"
+    tags: ["1", "2", "3 à 5", "6 à 10", "Plus de 10", "Non déterminable"]
+    prompt: >-
+      Combien d'associés compte la société à la date de référence de l'état à jour ? Répondez « Non déterminable » si la liste des associés à cette date ne peut pas être établie à partir du PDF.
+  - index: 17
+    name: "Part des personnes morales dans le capital"
+    format: "tag"
+    tags: ["Aucune", "Moins de 50 %", "50 % ou plus", "100 %", "Non déterminable"]
+    prompt: >-
+      Quelle part du capital est détenue par des personnes morales à la date de référence ? Répondez « Non déterminable » si la répartition ne peut pas être établie à cette date.
+  - index: 18
+    name: "Holding, SCI ou société associée"
+    format: "yes_no"
+    prompt: >-
+      Une société (holding, autre SCI, autre personne morale) figure-t-elle parmi les associés ?
+  - index: 19
+    name: "Fondation, trust ou structure étrangère"
+    format: "yes_no"
+    prompt: >-
+      Un associé est-il une fondation, un trust ou une structure de droit étranger ?
+  - index: 20
+    name: "Associé majoritaire : part du capital"
+    format: "percentage"
+    prompt: >-
+      Quel pourcentage du capital détient l'associé le plus important à la date de référence ? Si cette date ou la répartition ne peut pas être établie, répondez « Non déterminable ».
+  - index: 21
+    name: "Associé majoritaire : nature"
+    format: "tag"
+    tags: ["Personne physique", "Société", "Fondation ou trust", "Non déterminable"]
+    prompt: >-
+      L'associé détenant la plus grande part du capital est-il une personne physique, une société, ou une fondation ou un trust ? Répondez « Non déterminable » si la répartition ne peut pas être établie.
+  - index: 22
+    name: "Plusieurs générations associées"
+    format: "tag"
+    tags: ["Oui", "Non", "Non déterminable"]
+    prompt: >-
+      Les associés appartiennent-ils à plusieurs générations d'une même famille (par exemple parents et enfants), d'après le texte ? Répondez « Non déterminable » si les liens de parenté ou la liste des associés ne ressortent pas du PDF.
+  - index: 23
+    name: "Clause sur les comptes courants d'associés"
+    format: "tag"
+    tags: ["Aucune clause", "Rémunération fixée", "Blocage ou plafond", "Les deux", "Non déterminable"]
+    prompt: >-
+      Les statuts contiennent-ils une clause sur les comptes courants d'associés : fixation de leur rémunération, blocage ou plafonnement des avances ? Répondez « Aucune clause » si le texte lu n'en contient pas.
+  - index: 24
+    name: "Compte courant d'associé : extrait"
+    format: "text"
+    prompt: >-
+      Citez littéralement la clause sur les comptes courants d'associés, avec son numéro d'article : conditions de remboursement, rémunération, blocage, plafonnement, abandon de créance. Laissez vide si elle est absente.
+  - index: 25
+    name: "Parts à droits particuliers"
+    format: "yes_no"
+    prompt: >-
+      Existe-t-il des parts ou catégories de parts conférant des droits particuliers (droit de veto, parts de fondateurs, droit de vote renforcé) ?
+  - index: 26
+    name: "Parts à droits particuliers : extrait"
+    format: "text"
+    prompt: >-
+      Citez littéralement la clause instituant des droits particuliers attachés à certaines parts, avec son numéro d'article. Laissez vide si elle est absente.
+  - index: 27
+    name: "Parts démembrées dans l'état à jour"
+    format: "tag"
+    tags: ["Aucune", "En partie", "Majoritairement", "Non déterminable"]
+    prompt: >-
+      Des parts sont-elles démembrées (usufruit et nue-propriété séparés) à la date de référence ? Répondez « Non déterminable » si la date de référence ou la répartition ne peut pas être établie.
+  - index: 28
+    name: "Vote des décisions ordinaires (démembrement)"
+    format: "tag"
+    tags: ["Usufruitier", "Nu-propriétaire", "Répartition selon la décision", "Non précisé"]
+    prompt: >-
+      En cas de démembrement, à qui appartient le droit de vote pour les décisions ordinaires, selon les statuts : usufruitier, nu-propriétaire, ou répartition selon la décision ?
+  - index: 29
+    name: "Vote des décisions extraordinaires (démembrement)"
+    format: "tag"
+    tags: ["Usufruitier", "Nu-propriétaire", "Répartition selon la décision", "Non précisé"]
+    prompt: >-
+      En cas de démembrement, à qui appartient le droit de vote pour les décisions extraordinaires (modification des statuts notamment), selon les statuts ?
+  - index: 30
+    name: "Quasi-usufruit"
+    format: "yes_no"
+    prompt: >-
+      Les statuts prévoient-ils un quasi-usufruit ?
+  - index: 31
+    name: "Réversion ou usufruit successif"
+    format: "yes_no"
+    prompt: >-
+      Les statuts prévoient-ils la réversion d'un usufruit ou un usufruit successif ?
+  - index: 32
+    name: "Affectation des réserves et bénéfices exceptionnels"
+    format: "tag"
+    tags: ["Nu-propriétaire", "Usufruitier", "Au choix", "Non précisé"]
+    prompt: >-
+      En cas de démembrement, à qui reviennent les bénéfices exceptionnels et les prélèvements sur réserves selon les statuts : nu-propriétaire, usufruitier, ou au choix ?
+  - index: 33
+    name: "Démembrement : extrait"
+    format: "text"
+    prompt: >-
+      Citez littéralement les clauses relatives au démembrement (droit de vote, affectation des réserves, quasi-usufruit, réversion), avec leur numéro d'article. Laissez vide si elles sont absentes.
+  - index: 34
+    name: "Nombre de gérants"
+    format: "tag"
+    tags: ["1", "2", "3 et plus", "Non précisé"]
+    prompt: >-
+      Combien de gérants les statuts désignent-ils ou prévoient-ils à l'état à jour ?
+  - index: 35
+    name: "Gérant : nature"
+    format: "tag"
+    tags: ["Personne physique", "Personne morale", "Mixte", "Non précisé"]
+    prompt: >-
+      Le ou les gérants sont-ils des personnes physiques, des personnes morales, ou les deux ?
+  - index: 36
+    name: "Gérant nommé par les statuts"
+    format: "yes_no"
+    prompt: >-
+      Le gérant est-il nommé dans les statuts eux-mêmes (et non par une décision séparée) ?
+  - index: 37
+    name: "Durée du mandat du gérant"
+    format: "tag"
+    tags: ["Illimitée", "Déterminée", "Non précisé"]
+    prompt: >-
+      Le mandat du gérant est-il d'une durée illimitée, déterminée, ou non précisée par les statuts ?
+  - index: 38
+    name: "Étendue des pouvoirs du gérant"
+    format: "tag"
+    tags: ["Générale", "Limitée par liste", "Non précisé"]
+    prompt: >-
+      Les pouvoirs du gérant sont-ils généraux, ou limités par une liste d'actes ?
+  - index: 39
+    name: "Pouvoirs du gérant : extrait"
+    format: "text"
+    prompt: >-
+      Citez littéralement la clause fixant les pouvoirs du gérant et leurs limites, avec son numéro d'article. Laissez vide si elle est absente.
+  - index: 40
+    name: "Limites aux pouvoirs (autorisation de tiers)"
+    format: "yes_no"
+    prompt: >-
+      Certains actes du gérant sont-ils soumis à l'autorisation préalable des associés ou d'un tiers ?
+  - index: 41
+    name: "Verrouillage de la révocation"
+    format: "tag"
+    tags: ["Unanimité", "Majorité renforcée", "Juste motif seul", "Majorité simple", "Non précisé"]
+    prompt: >-
+      Quelles conditions les statuts posent-ils à la révocation du gérant : unanimité, majorité renforcée, juste motif uniquement, ou majorité simple ? Retenez la valeur la moins interprétative si la clause est ambiguë.
+  - index: 42
+    name: "Révocation du gérant : extrait"
+    format: "text"
+    prompt: >-
+      Citez littéralement la clause régissant la révocation du gérant, avec son numéro d'article. Laissez vide si elle est absente.
+  - index: 43
+    name: "Rémunération du gérant"
+    format: "tag"
+    tags: ["Gratuit", "Fixée par décision", "Fixée par les statuts", "Non précisé"]
+    prompt: >-
+      Comment les statuts traitent-ils la rémunération du gérant : fonction gratuite, rémunération fixée par une décision des associés, ou fixée par les statuts ?
+  - index: 44
+    name: "Désignation du successeur du gérant"
+    format: "tag"
+    tags: ["Prévue nominativement", "Par décision des associés", "Non précisé"]
+    prompt: >-
+      Les statuts prévoient-ils la désignation du successeur du gérant : nominativement, par décision des associés, ou pas du tout ?
+  - index: 45
+    name: "Comité de surveillance, directoire ou conseil de famille"
+    format: "yes_no"
+    prompt: >-
+      Les statuts instituent-ils un comité de surveillance, un directoire, un conseil de famille ou un organe de contrôle comparable ?
+  - index: 46
+    name: "Censeurs"
+    format: "yes_no"
+    prompt: >-
+      Les statuts prévoient-ils la nomination de censeurs ?
+  - index: 47
+    name: "Actes du gérant soumis à autorisation d'un organe"
+    format: "yes_no"
+    prompt: >-
+      Certains actes du gérant sont-ils soumis à l'autorisation préalable d'un organe de contrôle ou de gouvernance distinct des associés réunis ?
+  - index: 48
+    name: "Gouvernance : extrait"
+    format: "text"
+    prompt: >-
+      Citez littéralement les clauses instituant des organes de contrôle ou de gouvernance et leurs attributions, avec leur numéro d'article. Laissez vide si elles sont absentes.
+  - index: 49
+    name: "Majorité ordinaire"
+    format: "tag"
+    tags: ["Simple", "Renforcée", "Unanimité", "Non précisé"]
+    prompt: >-
+      Quelle majorité les statuts exigent-ils pour les décisions collectives ordinaires ?
+  - index: 50
+    name: "Majorité de modification des statuts"
+    format: "tag"
+    tags: ["Simple", "Renforcée", "Unanimité", "Non précisé"]
+    prompt: >-
+      Quelle majorité les statuts exigent-ils pour modifier les statuts ?
+  - index: 51
+    name: "Voix prépondérante"
+    format: "yes_no"
+    prompt: >-
+      Une voix prépondérante est-elle attribuée à un associé ou au gérant ?
+  - index: 52
+    name: "Actes réservés aux associés"
+    format: "yes_no"
+    prompt: >-
+      Certains actes (vente d'un immeuble, hypothèque, bail) sont-ils expressément réservés à une décision des associés ?
+  - index: 53
+    name: "Consultation écrite admise"
+    format: "yes_no"
+    prompt: >-
+      Les statuts admettent-ils la consultation écrite des associés ou une décision hors assemblée ?
+  - index: 54
+    name: "Agrément requis pour cession à un tiers"
+    format: "yes_no"
+    prompt: >-
+      La cession de parts à un tiers est-elle soumise à l'agrément des associés ?
+  - index: 55
+    name: "Agrément intrafamilial et holdings"
+    format: "tag"
+    tags: ["Totalement libre", "Soumis à agrément", "Libre selon conditions (descendants ou holding qualifiée)", "Non précisé"]
+    prompt: >-
+      Comment les statuts traitent-ils l'agrément pour les cessions intrafamiliales et vers des holdings : totalement libre, soumis à agrément, ou libre sous conditions (descendants, holding remplissant un seuil de détention) ? Retenez la valeur la moins interprétative si la clause est ambiguë.
+  - index: 56
+    name: "Majorité d'agrément"
+    format: "tag"
+    tags: ["Simple", "Renforcée", "Unanimité", "Non précisé"]
+    prompt: >-
+      Quelle majorité est requise pour l'agrément d'un cessionnaire ?
+  - index: 57
+    name: "Agrément : extrait"
+    format: "text"
+    prompt: >-
+      Citez littéralement la clause d'agrément et ses exceptions, avec son numéro d'article. Laissez vide si elle est absente.
+  - index: 58
+    name: "Droit de préemption"
+    format: "yes_no"
+    prompt: >-
+      Les statuts instituent-ils un droit de préemption au profit des associés ou de la société ?
+  - index: 59
+    name: "Inaliénabilité temporaire"
+    format: "yes_no"
+    prompt: >-
+      Les parts sont-elles déclarées inaliénables pendant une durée déterminée ?
+  - index: 60
+    name: "Exclusion ou retrait"
+    format: "tag"
+    tags: ["Exclusion", "Retrait", "Exclusion et retrait", "Non précisé"]
+    prompt: >-
+      Les statuts organisent-ils l'exclusion d'un associé, son retrait, les deux, ou aucun des deux (texte muet) ?
+  - index: 61
+    name: "Rachat forcé ou clause texane"
+    format: "yes_no"
+    prompt: >-
+      Les statuts contiennent-ils une clause de rachat forcé ou de type « buy or sell » (clause texane) permettant de débloquer un conflit entre associés ?
+  - index: 62
+    name: "Mode de valorisation des parts"
+    format: "tag"
+    tags: ["Expert", "Formule", "Valeur fixée", "Non précisé"]
+    prompt: >-
+      Comment les statuts valorisent-ils les parts en cas de cession forcée, de retrait ou d'exclusion : par un expert, par une formule, par une valeur fixée, ou pas du tout ?
+  - index: 63
+    name: "Continuation en cas de décès"
+    format: "tag"
+    tags: ["Continuation", "Dissolution", "Non précisé"]
+    prompt: >-
+      Que prévoient les statuts en cas de décès d'un associé : continuation de la société, dissolution, ou rien ?
+  - index: 64
+    name: "Agrément des héritiers"
+    format: "tag"
+    tags: ["Libre", "Soumis à agrément", "Non précisé"]
+    prompt: >-
+      L'entrée des héritiers d'un associé décédé est-elle libre ou soumise à agrément selon les statuts ?
+  - index: 65
+    name: "Protection du conjoint survivant"
+    format: "yes_no"
+    prompt: >-
+      Les statuts contiennent-ils une clause de protection du conjoint survivant (agrément facilité, maintien dans les lieux, attribution de parts) ?
+  - index: 66
+    name: "Mandat posthume"
+    format: "yes_no"
+    prompt: >-
+      Les statuts prévoient-ils un mandat posthume ou la désignation d'un mandataire en cas de décès ?
+  - index: 67
+    name: "Décès : extrait"
+    format: "text"
+    prompt: >-
+      Citez littéralement les clauses applicables au décès d'un associé, avec leur numéro d'article. Laissez vide si elles sont absentes.
